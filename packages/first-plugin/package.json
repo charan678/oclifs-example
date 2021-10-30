@@ -1,6 +1,6 @@
 {
   "name": "first-plugin",
-  "version": "0.0.0",
+  "version": "0.0.1-alpha.0",
   "author": "chsingh",
   "bugs": "https://github.com/packages/first-plugin/issues",
   "devDependencies": {

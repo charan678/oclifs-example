@@ -19,7 +19,7 @@ $ npm install -g first-plugin
 $ oclif-example COMMAND
 running command...
 $ oclif-example (-v|--version|version)
-first-plugin/0.0.0 darwin-x64 node-v16.11.1
+first-plugin/0.0.1-alpha.0 darwin-x64 node-v16.11.1
 $ oclif-example --help [COMMAND]
 USAGE
   $ oclif-example COMMAND
@@ -48,5 +48,5 @@ EXAMPLE
   hello world from ./src/hello.ts!
 ```
 
-_See code: [src/commands/hello.ts](https://github.com/packages/first-plugin/blob/v0.0.0/src/commands/hello.ts)_
+_See code: [src/commands/hello.ts](https://github.com/packages/first-plugin/blob/v0.0.1-alpha.0/src/commands/hello.ts)_
 <!-- commandsstop -->

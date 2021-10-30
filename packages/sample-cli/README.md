@@ -19,7 +19,7 @@ $ npm install -g sample-cli
 $ sample-cli COMMAND
 running command...
 $ sample-cli (-v|--version|version)
-sample-cli/0.0.0 darwin-x64 node-v16.11.1
+sample-cli/0.0.1-alpha.0 darwin-x64 node-v16.11.1
 $ sample-cli --help [COMMAND]
 USAGE
   $ sample-cli COMMAND
@@ -49,7 +49,7 @@ EXAMPLE
   hello world from ./src/hello.ts!
 ```
 
-_See code: [src/commands/hello.ts](https://github.com/packages/sample-cli/blob/v0.0.0/src/commands/hello.ts)_
+_See code: [src/commands/hello.ts](https://github.com/packages/sample-cli/blob/v0.0.1-alpha.0/src/commands/hello.ts)_
 
 ## `sample-cli help [COMMAND]`
 

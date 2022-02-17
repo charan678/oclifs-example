@@ -21,8 +21,10 @@ jobs:
       run: exit 0
     - name: Testing Output
       id: fail_build
+      env:
+        FAILURE: ${{ failure() || cancelled() }}
       run: |
-        if ${{ success() }}; then 
+        if $FAILURE; then 
           '::set-output name=FAILURE_TAG::true'
         else
           '::set-output name=FAILURE_TAG::false'
@@ -36,8 +38,10 @@ jobs:
         run: exit 1
       - name: Test output 2
         id: fail_build2
+        env:
+          FAILURE: ${{ failure() || cancelled() }}
         run: |
-          if ${{ success() }}; then 
+          if $FAILURE; then 
             '::set-output name=FAILURE_TAG::true'
           else
             '::set-output name=FAILURE_TAG::false'
@@ -51,8 +55,10 @@ jobs:
         run: exit 0
       - name: Test output 2
         id: fail_build3
+        env:
+          FAILURE: ${{ failure() || cancelled() }}
         run: |
-          if ${{ success() }}; then 
+          if $FAILURE; then 
             '::set-output name=FAILURE_TAG::true'
           else
             '::set-output name=FAILURE_TAG::false'

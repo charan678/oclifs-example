@@ -34,5 +34,6 @@ jobs:
     steps:
       - name: Print the values
         run: |
-          echo ${{ needs.*.outputs.ACCEPTANCE_OUT }}
+          echo ${{ needs.build.outputs.ACCEPTANCE_OUT }}
+          echo ${{ needs.build2.outputs.ACCEPTANCE_OUT }}
       

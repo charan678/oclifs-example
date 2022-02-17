@@ -25,9 +25,9 @@ jobs:
         FAILURE: failure() || cancelled()
       run: |
         if $FAILURE; then 
-          '::set-output name=FAILURE_TAG::true'
+          echo '::set-output name=FAILURE_TAG::true'
         else
-          '::set-output name=FAILURE_TAG::false'
+          echo '::set-output name=FAILURE_TAG::false'
         fi
   build2:
     runs-on: ubuntu-latest
@@ -42,9 +42,9 @@ jobs:
           FAILURE: failure() || cancelled()
         run: |
           if $FAILURE; then 
-            '::set-output name=FAILURE_TAG::true'
+            echo '::set-output name=FAILURE_TAG::true'
           else
-            '::set-output name=FAILURE_TAG::false'
+            echo '::set-output name=FAILURE_TAG::false'
           fi
   build3:
     runs-on: ubuntu-latest
@@ -59,9 +59,9 @@ jobs:
           FAILURE: failure() || cancelled()
         run: |
           if $FAILURE; then 
-            '::set-output name=FAILURE_TAG::true'
+            echo '::set-output name=FAILURE_TAG::true'
           else
-            '::set-output name=FAILURE_TAG::false'
+            echo '::set-output name=FAILURE_TAG::false'
           fi
   check:
     needs: [ build, build2, build3 ]

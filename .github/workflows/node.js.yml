@@ -22,7 +22,11 @@ jobs:
     - name: Testing Output
       id: fail_build
       run: |
-        if ${{ success() }} then '::set-output name=FAILURE_TAG::true' else '::set-output name=FAILURE_TAG::false' fi
+        if ${{ success() }}; then 
+          '::set-output name=FAILURE_TAG::true'
+        else
+          '::set-output name=FAILURE_TAG::false'
+        fi
   build2:
     runs-on: ubuntu-latest
     outputs: 
@@ -33,7 +37,11 @@ jobs:
       - name: Test output 2
         id: fail_build2
         run: |
-          if ${{ failed() || cancelled() }} then '::set-output name=FAILURE_TAG::true' else '::set-output name=FAILURE_TAG::false' fi
+          if ${{ success() }}; then 
+            '::set-output name=FAILURE_TAG::true'
+          else
+            '::set-output name=FAILURE_TAG::false'
+          fi
   build3:
     runs-on: ubuntu-latest
     outputs: 
@@ -44,7 +52,11 @@ jobs:
       - name: Test output 2
         id: fail_build3
         run: |
-          if ${{ failed() || cancelled() }} then '::set-output name=FAILURE_TAG::true' else '::set-output name=FAILURE_TAG::false' fi
+          if ${{ success() }}; then 
+            '::set-output name=FAILURE_TAG::true'
+          else
+            '::set-output name=FAILURE_TAG::false'
+          fi
   check:
     needs: [ build, build2, build3 ]
     runs-on: ubuntu-latest

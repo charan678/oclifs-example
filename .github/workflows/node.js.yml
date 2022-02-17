@@ -17,28 +17,34 @@ jobs:
     steps:
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v2
+    - name: test
+      run: exit 0
     - name: Testing Output
       id: fail_build
       run: |
-        echo '::set-output name=FAILURE_TAG::true'
+        if ${{ failed() || cancelled() }} then '::set-output name=FAILURE_TAG::true' else '::set-output name=FAILURE_TAG::false' fi
   build2:
     runs-on: ubuntu-latest
     outputs: 
       ACCEPTANCE_OUT: ${{ steps.fail_build2.outputs.FAILURE_TAG }}
     steps:
+      - name: test
+        run: exit 1
       - name: Test output 2
         id: fail_build2
         run: |
-          echo '::set-output name=FAILURE_TAG::true'
+          if ${{ failed() || cancelled() }} then '::set-output name=FAILURE_TAG::true' else '::set-output name=FAILURE_TAG::false' fi
   build3:
     runs-on: ubuntu-latest
     outputs: 
       ACCEPTANCE_OUT: ${{ steps.fail_build3.outputs.FAILURE_TAG }}
     steps:
+      - name: Test output build3
+        run: exit 0
       - name: Test output 2
         id: fail_build3
         run: |
-          echo 'fail_build3'
+          if ${{ failed() || cancelled() }} then '::set-output name=FAILURE_TAG::true' else '::set-output name=FAILURE_TAG::false' fi
   check:
     needs: [ build, build2, build3 ]
     runs-on: ubuntu-latest

@@ -29,13 +29,14 @@ jobs:
       - name: Test output 2
         id: fail_build2
         run: |
-          echo "Not setting anything"
+          echo '::set-output name=FAILURE_TAG::true'
   check:
     needs: [ build, build2 ]
     runs-on: ubuntu-latest
     steps:
       - name: Print the values
         run: |
-          echo ${{ needs.build.outputs.ACCEPTANCE_OUT == 'true'}}
-          echo ${{ needs.build2.outputs.ACCEPTANCE_OUT == '' }}
+          echo ${{ needs.build.outputs.ACCEPTANCE_OUT }}
+          echo ${{ needs.build2.outputs.ACCEPTANCE_OUT  }}
+          echo ${{ needs.*.outputs.ACCEPTANCE_OUT  }}
       

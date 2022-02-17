@@ -30,13 +30,30 @@ jobs:
         id: fail_build2
         run: |
           echo '::set-output name=FAILURE_TAG::true'
+  build3:
+    runs-on: ubuntu-latest
+    outputs: 
+      ACCEPTANCE_OUT: ${{ steps.fail_build3.outputs.FAILURE_TAG }}
+    steps:
+      - name: Test output 2
+        id: fail_build3
+        run: |
+          echo 'fail_build3'
   check:
-    needs: [ build, build2 ]
+    needs: [ build, build2, build3 ]
     runs-on: ubuntu-latest
     steps:
       - name: Print the values
         run: |
+          echo "values"
           echo ${{ needs.build.outputs.ACCEPTANCE_OUT }}
           echo ${{ needs.build2.outputs.ACCEPTANCE_OUT  }}
-          echo ${{ needs.*.outputs.ACCEPTANCE_OUT  }}
+          echo ${{ needs.build3.outputs.ACCEPTANCE_OUT  }}
+          echo "compare"
+          echo ${{ needs.build.outputs.ACCEPTANCE_OUT == '' }}
+          echo ${{ needs.build2.outputs.ACCEPTANCE_OUT == ''   }}
+          echo ${{ needs.build3.outputs.ACCEPTANCE_OUT == ''   }}
+          echo "exp"
+          echo ${{ contains(needs.*.outputs.ACCEPTANCE_OUT, '')  }}
+          echo ${{ join(needs.*.outputs.ACCEPTANCE_OUT, ',')  }}
       

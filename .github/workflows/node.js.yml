@@ -22,7 +22,7 @@ jobs:
     - name: Testing Output
       id: fail_build
       run: |
-        if ${{ failed() || cancelled() }} then '::set-output name=FAILURE_TAG::true' else '::set-output name=FAILURE_TAG::false' fi
+        if ${{ success() }} then '::set-output name=FAILURE_TAG::true' else '::set-output name=FAILURE_TAG::false' fi
   build2:
     runs-on: ubuntu-latest
     outputs: 

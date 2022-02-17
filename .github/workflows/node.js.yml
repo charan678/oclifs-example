@@ -12,20 +12,22 @@ on:
 jobs:
   build:
     outputs: 
-      ACCEPTANCE_OUT: ${{ steps.build.outputs.FAILURE_TAG }}
+      ACCEPTANCE_OUT: ${{ steps.fail_build.outputs.FAILURE_TAG }}
     runs-on: ubuntu-latest
     steps:
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v2
-    - name: Testing Output 
+    - name: Testing Output
+      id: fail_build
       run: |
         echo '::set-output name=FAILURE_TAG::true'
   build2:
     runs-on: ubuntu-latest
     outputs: 
-      ACCEPTANCE_OUT: ${{ steps.build2.outputs.FAILURE_TAG }}
+      ACCEPTANCE_OUT: ${{ steps.fail_build2.outputs.FAILURE_TAG }}
     steps:
       - name: Test output 2
+        id: fail_build2
         run: |
           echo "Not setting anything"
   check:

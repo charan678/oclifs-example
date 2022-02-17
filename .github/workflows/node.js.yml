@@ -26,6 +26,7 @@ jobs:
       env:
         FAILURE: failure() || cancelled()
       run: |
+        echo $FAILURE
         if $FAILURE; then 
           echo '::set-output name=FAILURE_TAG::true'
         else
@@ -45,6 +46,7 @@ jobs:
         env:
           FAILURE: failure() || cancelled()
         run: |
+          echo $FAILURE
           if $FAILURE; then 
             echo '::set-output name=FAILURE_TAG::true'
           else
@@ -64,6 +66,7 @@ jobs:
         env:
           FAILURE: failure() || cancelled()
         run: |
+          echo $FAILURE
           if $FAILURE; then 
             echo '::set-output name=FAILURE_TAG::true'
           else

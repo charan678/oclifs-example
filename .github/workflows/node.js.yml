@@ -22,7 +22,7 @@ jobs:
     - name: Testing Output
       id: fail_build
       env:
-        FAILURE: ${{ failure() || cancelled() }}
+        FAILURE: failure() || cancelled()
       run: |
         if $FAILURE; then 
           '::set-output name=FAILURE_TAG::true'
@@ -39,7 +39,7 @@ jobs:
       - name: Test output 2
         id: fail_build2
         env:
-          FAILURE: ${{ failure() || cancelled() }}
+          FAILURE: failure() || cancelled()
         run: |
           if $FAILURE; then 
             '::set-output name=FAILURE_TAG::true'
@@ -56,7 +56,7 @@ jobs:
       - name: Test output 2
         id: fail_build3
         env:
-          FAILURE: ${{ failure() || cancelled() }}
+          FAILURE: failure() || cancelled()
         run: |
           if $FAILURE; then 
             '::set-output name=FAILURE_TAG::true'

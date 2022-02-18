@@ -22,16 +22,9 @@ jobs:
       run: exit 0
     - name: Testing Output
       id: fail_build
-      if: always()
-      env:
-        FAILURE: failure() || cancelled()
+      if: failure() || cancelled()
       run: |
-        echo $FAILURE
-        if $FAILURE; then 
-          echo '::set-output name=FAILURE_TAG::true'
-        else
-          echo '::set-output name=FAILURE_TAG::false'
-        fi
+        echo '::set-output name=FAILURE_TAG::true'
   build2:
     runs-on: ubuntu-latest
     continue-on-error: true
@@ -42,16 +35,9 @@ jobs:
         run: exit 1
       - name: Test output 2
         id: fail_build2
-        if: always()
-        env:
-          FAILURE: failure() || cancelled()
+        if: failure() || cancelled()
         run: |
-          echo $FAILURE
-          if $FAILURE; then 
-            echo '::set-output name=FAILURE_TAG::true'
-          else
-            echo '::set-output name=FAILURE_TAG::false'
-          fi
+          echo '::set-output name=FAILURE_TAG::true'
   build3:
     runs-on: ubuntu-latest
     continue-on-error: true
@@ -62,16 +48,9 @@ jobs:
         run: exit 0
       - name: Test output 2
         id: fail_build3
-        if: always()
-        env:
-          FAILURE: failure() || cancelled()
+        if: failure() || cancelled()
         run: |
-          echo $FAILURE
-          if $FAILURE; then 
-            echo '::set-output name=FAILURE_TAG::true'
-          else
-            echo '::set-output name=FAILURE_TAG::false'
-          fi
+          echo '::set-output name=FAILURE_TAG::true'
   check:
     needs: [ build, build2, build3 ]
     runs-on: ubuntu-latest

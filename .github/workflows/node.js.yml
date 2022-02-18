@@ -68,6 +68,4 @@ jobs:
           echo "exp"
           echo ${{ contains(needs.*.outputs.ACCEPTANCE_OUT, '')  }}
           echo ${{ join(needs.*.outputs.ACCEPTANCE_OUT, ',')  }}
-          echo ${{ contains(['true', 'false', 'hello'], 'hello')  }}
-          echo ${{ contains(['true', 'false', ''], '')  }}
       
